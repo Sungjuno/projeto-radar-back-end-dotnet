@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="../buildMultiTargeting/exercicio-pessoa-fisica-juridica.props" />
+</Project>
