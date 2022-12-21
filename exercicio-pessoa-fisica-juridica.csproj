@@ -7,4 +7,10 @@
     <RootNamespace>exercicio_pessoa_fisica_juridica</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\" />
+  </ItemGroup>
 </Project>

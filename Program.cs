@@ -1,5 +1,6 @@
 ﻿using System.Text;
 using System.Text.Json;
+using exercicio_pessoa_fisica_juridica.Models;
 
 namespace Exercicio;
 
@@ -13,7 +14,6 @@ class Exercicio
         var path = "/Users/sung/Projects/exercicio-pessoa-fisica-juridica/exercicio-pessoa-fisica-juridica/CadastroJson.json";
         string conteudo = File.ReadAllText(path, Encoding.UTF8);
 
-        int id = conteudo.Length;
         while (true)
         {
             Console.WriteLine("Menu:");
@@ -23,9 +23,9 @@ class Exercicio
             Console.WriteLine("4. Exit");
 
             Console.Write("Escolha a opção desejada: ");
-            int selection = int.Parse(Console.ReadLine());
+            int selecao = int.Parse(Console.ReadLine());
 
-            switch (selection)
+            switch (selecao)
             {
                 case 1:
 
@@ -34,15 +34,12 @@ class Exercicio
                     Console.WriteLine("2. Documento");
                     int documento = int.Parse(Console.ReadLine());
 
-                    PessoaFisica pessoaFisica = new PessoaFisica();
-                    pessoaFisica.Id = Guid.NewGuid().ToString();
-                    pessoaFisica.Nome = nomeFisico;
-                    pessoaFisica.CPF = documento;
-                    pessoaFisica.Tipo = "F";
+                    PessoaFisica pessoaFisica = new PessoaFisica() { Nome = nomeFisico, CPF = documento};
 
                     string jsonFisica = JsonSerializer.Serialize(pessoaFisica);
 
                     file.WriteLine(jsonFisica);
+                    Console.Clear();
 
                     break;
 
@@ -53,21 +50,20 @@ class Exercicio
                     Console.WriteLine("2. CNPJ");
                     int cnpj = int.Parse(Console.ReadLine());
 
-                    PessoaJuridica pessoaJuridica = new PessoaJuridica();
-                    pessoaJuridica.Id = Guid.NewGuid().ToString();
-                    pessoaJuridica.Nome = nomeFornecedor;
-                    pessoaJuridica.CNPJ = cnpj;
-                    pessoaJuridica.Tipo = "J";
+                    PessoaJuridica pessoaJuridica = new PessoaJuridica() { Nome = nomeFornecedor, CNPJ = cnpj};
 
                     string jsonJuridica = JsonSerializer.Serialize(pessoaJuridica);
 
                     file.WriteLine(jsonJuridica);
+                    Console.Clear();
 
                     break;
                 case 3:
+                    Console.WriteLine("Para ver os cadastros atuais é necessário encerrar e rodar a aplicação.");
                     Console.WriteLine(conteudo);
                     break;
                 case 4:
+                    Console.Clear();
                     return;
                 default:
                     Console.WriteLine("Opção inválida, tente novamente.");
@@ -75,29 +71,6 @@ class Exercicio
             }
         }
     }
-
-    public class PessoaFisica : Pessoa
-    {
-
-        public int CPF { get; set; }
-        
-    }
-
-    public class PessoaJuridica : Pessoa
-    {
-
-        public int CNPJ { get; set; }
-
-    }
-
-    public class Pessoa
-    {
-        public string Id { get; set; }
-        public string Nome { get; set; }
-        public string Tipo { get; set; }
-
-    }
-
 }
 
 
