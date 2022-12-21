@@ -10,8 +10,10 @@ class Exercicio
     public static void Main(string[] args)
     {
         using StreamWriter file = new("/Users/sung/Projects/exercicio-pessoa-fisica-juridica/exercicio-pessoa-fisica-juridica/CadastroJson.json", append: true);
+        var path = "/Users/sung/Projects/exercicio-pessoa-fisica-juridica/exercicio-pessoa-fisica-juridica/CadastroJson.json";
+        string conteudo = File.ReadAllText(path, Encoding.UTF8);
 
-        int id = 0;
+        int id = conteudo.Length;
         while (true)
         {
             Console.WriteLine("Menu:");
@@ -33,7 +35,7 @@ class Exercicio
                     int documento = int.Parse(Console.ReadLine());
 
                     PessoaFisica pessoaFisica = new PessoaFisica();
-                    pessoaFisica.Id = id++;
+                    pessoaFisica.Id = Guid.NewGuid().ToString();
                     pessoaFisica.Nome = nomeFisico;
                     pessoaFisica.CPF = documento;
                     pessoaFisica.Tipo = "F";
@@ -52,7 +54,7 @@ class Exercicio
                     int cnpj = int.Parse(Console.ReadLine());
 
                     PessoaJuridica pessoaJuridica = new PessoaJuridica();
-                    pessoaJuridica.Id = id++;
+                    pessoaJuridica.Id = Guid.NewGuid().ToString();
                     pessoaJuridica.Nome = nomeFornecedor;
                     pessoaJuridica.CNPJ = cnpj;
                     pessoaJuridica.Tipo = "J";
@@ -63,8 +65,6 @@ class Exercicio
 
                     break;
                 case 3:
-                    var path = "/Users/sung/Projects/exercicio-pessoa-fisica-juridica/exercicio-pessoa-fisica-juridica/CadastroJson.json";
-                    string conteudo = File.ReadAllText(path, Encoding.UTF8);
                     Console.WriteLine(conteudo);
                     break;
                 case 4:
@@ -92,7 +92,7 @@ class Exercicio
 
     public class Pessoa
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string Nome { get; set; }
         public string Tipo { get; set; }
 
