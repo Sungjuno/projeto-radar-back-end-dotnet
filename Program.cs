@@ -35,10 +35,7 @@ class Exercicio
                     int documento = int.Parse(Console.ReadLine());
 
                     PessoaFisica pessoaFisica = new PessoaFisica() { Nome = nomeFisico, CPF = documento};
-
-                    string jsonFisica = JsonSerializer.Serialize(pessoaFisica);
-
-                    file.WriteLine(jsonFisica);
+                    pessoaFisica.Serializador(pessoaFisica, file);
                     Console.Clear();
 
                     break;
@@ -51,10 +48,7 @@ class Exercicio
                     int cnpj = int.Parse(Console.ReadLine());
 
                     PessoaJuridica pessoaJuridica = new PessoaJuridica() { Nome = nomeFornecedor, CNPJ = cnpj};
-
-                    string jsonJuridica = JsonSerializer.Serialize(pessoaJuridica);
-
-                    file.WriteLine(jsonJuridica);
+                    pessoaJuridica.Serializador(pessoaJuridica, file);
                     Console.Clear();
 
                     break;

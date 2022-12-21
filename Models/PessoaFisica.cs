@@ -18,6 +18,12 @@ namespace exercicio_pessoa_fisica_juridica.Models
             get { return _Tipo; }
             set { this.Tipo = _Tipo; } }
         public int CPF { get; set; }
+
+        public void Serializador(object pessoa, StreamWriter file)
+        {
+            string json = JsonSerializer.Serialize(pessoa);
+            file.WriteLine(json);
+        }
     }
 
 }
